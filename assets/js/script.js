@@ -4,22 +4,20 @@ const MAX_CONTAINER_WIDTH = 960;
 // Grid settings
 let squaresPerSide = 25;
 let borderThickness = 1;
-let squareColor = 'black';
 let totalBorderSpacePerSide = borderThickness * (squaresPerSide + 1);
 let totalSquareSpacePerSide = MAX_CONTAINER_WIDTH - totalBorderSpacePerSide;
 let squareSize = Math.floor(totalSquareSpacePerSide / squaresPerSide);
 let newTotalSquareSpacePerSide = squareSize * squaresPerSide;
 let containerWidth = totalBorderSpacePerSide + newTotalSquareSpacePerSide;
-
+let squareColor = 'black';
+// Container properties
 const squareDivsContainer = document.querySelector('#square-divs-container');
 squareDivsContainer.style.width = `${containerWidth}px`;
 squareDivsContainer.style.height = `${containerWidth}px`;
 squareDivsContainer.style.fontSize = 0;
 
-// Grid settings
-let x = squaresPerSide;
-let y = squaresPerSide;
-
+let x, y;
+x = y = squaresPerSide;
 // Draw grid
 for (let i = 0; i < y; i++) {
     for (let j = 0; j < x; j++) {
