@@ -6,9 +6,8 @@ let squaresPerSide = 25;
 let borderThickness = 1;
 let totalBorderSpacePerSide = borderThickness * (squaresPerSide + 1);
 let totalSquareSpacePerSide = MAX_CONTAINER_WIDTH - totalBorderSpacePerSide;
-let squareSize = Math.floor(totalSquareSpacePerSide / squaresPerSide);
-let newTotalSquareSpacePerSide = squareSize * squaresPerSide;
-let containerWidth = totalBorderSpacePerSide + newTotalSquareSpacePerSide;
+let containerWidth = totalBorderSpacePerSide + totalSquareSpacePerSide;
+let squareSize = totalSquareSpacePerSide / squaresPerSide;
 let squareColor = 'black';
 // Container properties
 const squareDivsContainer = document.querySelector('#square-divs-container');
