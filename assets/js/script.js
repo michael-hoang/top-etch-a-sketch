@@ -1,8 +1,8 @@
 const MAX_SQUARES_PER_SIDE = 100;
-const MAX_CONTAINER_WIDTH = 960;
+const MAX_CONTAINER_WIDTH = 500;
 
 // Grid settings
-let squaresPerSide = 25;
+let squaresPerSide = 5;
 let borderThickness = 1;
 let totalBorderSpacePerSide = borderThickness * (squaresPerSide + 1);
 let totalSquareSpacePerSide = MAX_CONTAINER_WIDTH - totalBorderSpacePerSide;
