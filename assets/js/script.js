@@ -1,21 +1,25 @@
 const MAX_SQUARES_PER_SIDE = 100;
-const MAX_CONTAINER_WIDTH = 500;
+const CONTAINER_WIDTH = 500;
+const BORDER_THICKNESS = 1;
 
-// Grid settings
-let squaresPerSide = 25;
-let borderThickness = 1;
-let totalBorderSpacePerSide = borderThickness * (squaresPerSide + 1);
-let totalSquareSpacePerSide = MAX_CONTAINER_WIDTH - totalBorderSpacePerSide;
-let containerWidth = totalBorderSpacePerSide + totalSquareSpacePerSide;
-let squareSize = totalSquareSpacePerSide / squaresPerSide;
-let squareColor = 'black';
 // Container properties
 const squareDivsContainer = document.querySelector('#square-divs-container');
-squareDivsContainer.style.width = `${containerWidth}px`;
-squareDivsContainer.style.height = `${containerWidth}px`;
+squareDivsContainer.style.width = `${CONTAINER_WIDTH}px`;
+squareDivsContainer.style.height = `${CONTAINER_WIDTH}px`;
 squareDivsContainer.style.fontSize = 0;
 
+// Grid settings
+let squareColor = 'black';
+let squaresPerSide = 10;
+
+function calculateSquareSize() {
+    let totalBorderSpacePerSide = BORDER_THICKNESS * (squaresPerSide + 1);
+    let totalSquareSpacePerSide = CONTAINER_WIDTH - totalBorderSpacePerSide;
+    return totalSquareSpacePerSide / squaresPerSide;
+}
+
 function drawGrid() {
+    let squareSize = calculateSquareSize();
     let x, y;
     x = y = squaresPerSide;
     for (let i = 0; i < y; i++) {
@@ -29,16 +33,16 @@ function drawGrid() {
     
             // Squares that are not located at right edge, bottom edge, or bottom right corner
             if (i !== y - 1 && j !== x - 1) {
-                newDiv.style.borderWidth = `${borderThickness}px 0 0 ${borderThickness}px`;
+                newDiv.style.borderWidth = `${BORDER_THICKNESS}px 0 0 ${BORDER_THICKNESS}px`;
             } // Right edge squares (exclude bottom right corner)
             else if (i !== y - 1 && j === x - 1) {
-                newDiv.style.borderWidth = `${borderThickness}px ${borderThickness}px 0 ${borderThickness}px`;
+                newDiv.style.borderWidth = `${BORDER_THICKNESS}px ${BORDER_THICKNESS}px 0 ${BORDER_THICKNESS}px`;
             } // Bottom edge squares (exclude bottom right corner)
             else if (i === y - 1 && j !== x - 1) {
-                newDiv.style.borderWidth = `${borderThickness}px 0 ${borderThickness}px ${borderThickness}px`;
+                newDiv.style.borderWidth = `${BORDER_THICKNESS}px 0 ${BORDER_THICKNESS}px ${BORDER_THICKNESS}px`;
             } // Bottom right corner square
             else {
-                newDiv.style.borderWidth = `${borderThickness}px`;
+                newDiv.style.borderWidth = `${BORDER_THICKNESS}px`;
             }
     
             // Add "hover" effect to square
@@ -47,8 +51,26 @@ function drawGrid() {
     }
 }
 
-// Change Canvas Resolution button
-const resBtn = document.querySelector('#resolution-btn');
-resBtn.addEventListener('click', (e) => {
-    squaresPerSide = prompt('How many squares per side? (Max 100)');
+function eraseGrid() {
+    while (squareDivsContainer.firstChild) {
+        squareDivsContainer.removeChild(squareDivsContainer.firstChild);
+    }
+}
+
+function updateSquaresPerSide() {
+    squaresPerSide = gridSizeInput.value * 1; // * 1 converts number string to number
+}
+
+
+// Grid size input
+const gridSizeInput = document.querySelector('#grid-size');
+gridSizeInput.placeholder = squaresPerSide;
+// Refresh button
+const refreshBtn = document.querySelector('#refresh-btn');
+refreshBtn.addEventListener('click', (e) => {
+    updateSquaresPerSide();
+    eraseGrid();
+    drawGrid();
 });
+
+drawGrid();
