@@ -1,9 +1,10 @@
-// Grid dimension
+// Grid settings
 let x = 16;
 let y = 16;
 let squareHeight = 25;
 let squareWidth = 25;
 let borderThickness = 1;
+let squareColor = 'black'
 
 
 const squareDivsContainer = document.querySelector('#square-divs-container');
@@ -36,8 +37,6 @@ for (let i = 0; i < y; i++) {
         }
 
         // Add "hover" effect to square
-        newDiv.addEventListener('mouseover', (e) => {
-            newDiv.style.backgroundColor = 'black';
-        });
+        newDiv.addEventListener('mouseover', (e) => newDiv.style.backgroundColor = `${squareColor}`);
     }
 }
