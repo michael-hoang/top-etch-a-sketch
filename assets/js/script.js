@@ -2,7 +2,7 @@ const MAX_SQUARES_PER_SIDE = 100;
 const MAX_CONTAINER_WIDTH = 500;
 
 // Grid settings
-let squaresPerSide = 5;
+let squaresPerSide = 25;
 let borderThickness = 1;
 let totalBorderSpacePerSide = borderThickness * (squaresPerSide + 1);
 let totalSquareSpacePerSide = MAX_CONTAINER_WIDTH - totalBorderSpacePerSide;
@@ -38,10 +38,16 @@ for (let i = 0; i < y; i++) {
             newDiv.style.borderWidth = `${borderThickness}px 0 ${borderThickness}px ${borderThickness}px`;
         } // Bottom right corner square
         else {
-            newDiv.style.borderWidth = `${borderThickness}px`
+            newDiv.style.borderWidth = `${borderThickness}px`;
         }
 
         // Add "hover" effect to square
         newDiv.addEventListener('mouseover', (e) => newDiv.style.backgroundColor = `${squareColor}`);
     }
 }
+
+// Change Canvas Resolution button
+const resBtn = document.querySelector('#resolution-btn');
+resBtn.addEventListener('click', (e) => {
+    squaresPerSide = prompt('How many squares per side? (Max 100)');
+});
