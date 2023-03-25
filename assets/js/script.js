@@ -11,6 +11,7 @@ squareDivsContainer.style.height = `${(squareHeight + borderThickness) * y + bor
 squareDivsContainer.style.width = `${(squareWidth + borderThickness) * y + borderThickness}px`;
 squareDivsContainer.style.fontSize = 0;
 
+// Draw grid
 for (let i = 0; i < y; i++) {
     for (let j = 0; j < x; j++) {
         const newDiv = document.createElement('div');
@@ -33,5 +34,10 @@ for (let i = 0; i < y; i++) {
         else {
             newDiv.style.borderWidth = `${borderThickness}px`
         }
+
+        // Add "hover" effect to square
+        newDiv.addEventListener('mouseover', (e) => {
+            newDiv.style.backgroundColor = 'black';
+        });
     }
 }
