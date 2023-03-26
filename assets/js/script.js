@@ -58,7 +58,17 @@ function eraseGrid() {
 }
 
 function updateSquaresPerSide() {
-    squaresPerSide = gridSizeInput.value * 1; // * 1 converts number string to number
+    let newGridSize = gridSizeInput.value
+    if (!isNaN(newGridSize)) {
+        newGridSize = newGridSize * 1; // * 1 converts number string to number
+        if (Number.isInteger(newGridSize) && newGridSize > 0) {
+            squaresPerSide = newGridSize;
+        } else {
+            console.log('not a number');
+        }
+    } else {
+        console.log('not a number');
+    }
 }
 
 

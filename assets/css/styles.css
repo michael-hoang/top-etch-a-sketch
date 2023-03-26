@@ -1,3 +1,9 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #grid-size-label {
     font-size: 32px;
 }
@@ -6,3 +12,4 @@
     font-size: 32px;
     width: 60px;
 }
+
