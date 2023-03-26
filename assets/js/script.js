@@ -12,6 +12,7 @@ squareDivsContainer.style.fontSize = 0;
 let squareColor = 'black';
 let squaresPerSide = 10;
 
+// Functions
 function calculateSquareSize() {
     let totalBorderSpacePerSide = BORDER_THICKNESS * (squaresPerSide + 1);
     let totalSquareSpacePerSide = CONTAINER_WIDTH - totalBorderSpacePerSide;
@@ -65,6 +66,16 @@ function updateSquaresPerSide() {
     } else {
         gridSizeInput.style.backgroundColor = 'tomato'
     }
+}
+
+function generateRandomColor() {
+    let hexadecimal = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        let randomIndex = Math.floor(Math.random() * 16);
+        color += hexadecimal[randomIndex];
+    }
+    return color;
 }
 
 
