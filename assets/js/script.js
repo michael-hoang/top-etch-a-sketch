@@ -73,8 +73,12 @@ function updateSquaresPerSide() {
 
 
 // Grid size input
-const gridSizeInput = document.querySelector('#grid-size');
-gridSizeInput.placeholder = squaresPerSide;
+const gridSizeInput = document.querySelector('#grid-size-entry');
+gridSizeInput.value = squaresPerSide;
+gridSizeInput.addEventListener('click', (e) => {
+    gridSizeInput.select()
+})
+
 // Refresh button
 const refreshBtn = document.querySelector('#refresh-btn');
 refreshBtn.addEventListener('click', (e) => {
