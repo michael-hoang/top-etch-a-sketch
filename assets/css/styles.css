@@ -2,13 +2,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2vh;
 }
 
 #grid-size-label {
     font-size: 32px;
 }
 
-#grid-size {
+#grid-size-entry {
     font-size: 32px;
     width: 60px;
 }
