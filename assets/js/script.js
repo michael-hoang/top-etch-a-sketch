@@ -1,5 +1,5 @@
 const MAX_SQUARES_PER_SIDE = 100;
-const CONTAINER_WIDTH = 500;
+const CONTAINER_WIDTH = 600;
 const BORDER_THICKNESS = 1;
 
 // Container properties
@@ -9,7 +9,7 @@ squareDivsContainer.style.height = `${CONTAINER_WIDTH}px`;
 squareDivsContainer.style.fontSize = 0;
 
 // Grid settings
-let squareColor = 'black';
+let squareColor = 'rgb(60, 60, 60';
 let squaresPerSide = 10;
 
 // Functions
@@ -27,6 +27,7 @@ function drawGrid() {
         for (let j = 0; j < x; j++) {
             const newDiv = document.createElement('div');
             newDiv.style.border = `solid black`;
+            newDiv.style.borderColor = 'rgb(210, 210, 210)'
             newDiv.style.height = `${squareSize}px`;
             newDiv.style.width = `${squareSize}px`;
             newDiv.style.display = 'inline-block';
@@ -64,7 +65,7 @@ function updateSquaresPerSide() {
         newGridSize = newGridSize * 1; // * 1 converts number string to number
         squaresPerSide = newGridSize;
     } else {
-        gridSizeInput.style.backgroundColor = 'tomato'
+        gridSizeInput.style.backgroundColor = 'rgba(255, 99, 71, 0.5)'
     }
 }
 
@@ -84,7 +85,7 @@ const gridSizeInput = document.querySelector('#grid-size-entry');
 gridSizeInput.value = squaresPerSide;
 gridSizeInput.addEventListener('focus', (e) => {
     gridSizeInput.select()
-    gridSizeInput.style.backgroundColor = 'white'
+    gridSizeInput.style.backgroundColor = 'rgb(240, 240, 240)'
 })
 gridSizeInput.addEventListener('focusout', (e) => {
     if (gridSizeInput.value === '') {
