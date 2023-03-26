@@ -78,10 +78,15 @@ gridSizeInput.value = squaresPerSide;
 gridSizeInput.addEventListener('click', (e) => {
     gridSizeInput.select()
 })
+gridSizeInput.addEventListener('focusout', (e) => {
+    if (gridSizeInput.value === '') {
+        gridSizeInput.value = squaresPerSide;
+    }
+})
 
 // Refresh button
 const refreshBtn = document.querySelector('#refresh-btn');
-refreshBtn.addEventListener('click', (e) => {
+refreshBtn.addEventListener('focus', (e) => {
     updateSquaresPerSide();
     eraseGrid();
     drawGrid();
