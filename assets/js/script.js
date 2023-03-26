@@ -63,7 +63,7 @@ function updateSquaresPerSide() {
         newGridSize = newGridSize * 1; // * 1 converts number string to number
         squaresPerSide = newGridSize;
     } else {
-        gridSizeInput.style.backgroundColor = 'red'
+        gridSizeInput.style.backgroundColor = 'tomato'
     }
 }
 
