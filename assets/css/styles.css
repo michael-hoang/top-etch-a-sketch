@@ -30,6 +30,14 @@ body {
     padding: 1.5vw;
 }
 
+#refresh-btn:active {
+    transform: scale(0.98);
+}
+
+#refresh-btn:hover {
+    background-color: rgb(220, 220, 220);
+}
+
 @media screen and (min-width: 960px) {
 
     #grid-size-entry,
