@@ -59,15 +59,11 @@ function eraseGrid() {
 
 function updateSquaresPerSide() {
     let newGridSize = gridSizeInput.value
-    if (!isNaN(newGridSize)) {
+    if (!isNaN(newGridSize) && newGridSize > 0 && newGridSize <= 100 && newGridSize % 1 === 0) {
         newGridSize = newGridSize * 1; // * 1 converts number string to number
-        if (Number.isInteger(newGridSize) && newGridSize > 0) {
-            squaresPerSide = newGridSize;
-        } else {
-            console.log('not a number');
-        }
+        squaresPerSide = newGridSize;
     } else {
-        console.log('not a number');
+        gridSizeInput.style.backgroundColor = 'red'
     }
 }
 
@@ -75,8 +71,9 @@ function updateSquaresPerSide() {
 // Grid size input
 const gridSizeInput = document.querySelector('#grid-size-entry');
 gridSizeInput.value = squaresPerSide;
-gridSizeInput.addEventListener('click', (e) => {
+gridSizeInput.addEventListener('focus', (e) => {
     gridSizeInput.select()
+    gridSizeInput.style.backgroundColor = 'white'
 })
 gridSizeInput.addEventListener('focusout', (e) => {
     if (gridSizeInput.value === '') {
@@ -86,7 +83,7 @@ gridSizeInput.addEventListener('focusout', (e) => {
 
 // Refresh button
 const refreshBtn = document.querySelector('#refresh-btn');
-refreshBtn.addEventListener('focus', (e) => {
+refreshBtn.addEventListener('click', (e) => {
     updateSquaresPerSide();
     eraseGrid();
     drawGrid();

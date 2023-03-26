@@ -1,16 +1,46 @@
 body {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2vh;
-}
-
-#grid-size-label {
-    font-size: 32px;
+    font-family: 'Press Start 2P', cursive;
+    gap: 2.5vh;
+    margin: 0 10%;
+    text-align: center;
 }
 
 #grid-size-entry {
-    font-size: 32px;
-    width: 60px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3vw;
+    width: 3ch;
 }
 
+#grid-size-label {
+    font-size: 3vw;
+}
+
+#page-title {
+    font-size: 6vw;
+}
+
+#refresh-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.5vw;
+    padding: 1.5vw;
+}
+
+@media screen and (min-width: 960px) {
+
+    #grid-size-entry,
+    #grid-size-label {
+        font-size: 28.8px;
+    }
+
+    #page-title {
+        font-size: 57.6px;
+    }
+
+    #refresh-btn {
+        font-size: 24px;
+        padding: 14.4px;
+    }
+}
