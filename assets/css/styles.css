@@ -2,7 +2,7 @@ body {
     align-items: center;
     /* background-color: rgb(230, 230, 230); */
     background-size: cover;
-    background-image: url('../img/grid-bg.png');
+    background-image: url('../img/grid-bg.jpg');
     background-position: center;
     display: flex;
     flex-direction: column;
