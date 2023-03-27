@@ -9,7 +9,8 @@ squareDivsContainer.style.height = `${CONTAINER_WIDTH}px`;
 squareDivsContainer.style.fontSize = 0;
 
 // Grid settings
-let squareColor = 'rgb(60, 60, 60';
+let blankSquareColor = 'rgb(210, 210, 210)';
+let defaultSquareColor = 'rgb(60, 60, 60)';
 let squaresPerSide = 10;
 
 // Functions
@@ -27,12 +28,12 @@ function drawGrid() {
         for (let j = 0; j < x; j++) {
             const newDiv = document.createElement('div');
             newDiv.style.border = `solid black`;
-            newDiv.style.borderColor = 'rgb(210, 210, 210)'
+            newDiv.style.borderColor = blankSquareColor;
             newDiv.style.height = `${squareSize}px`;
             newDiv.style.width = `${squareSize}px`;
             newDiv.style.display = 'inline-block';
             squareDivsContainer.appendChild(newDiv);
-    
+
             // Squares that are not located at right edge, bottom edge, or bottom right corner
             if (i !== y - 1 && j !== x - 1) {
                 newDiv.style.borderWidth = `${BORDER_THICKNESS}px 0 0 ${BORDER_THICKNESS}px`;
@@ -46,9 +47,9 @@ function drawGrid() {
             else {
                 newDiv.style.borderWidth = `${BORDER_THICKNESS}px`;
             }
-    
+
             // Add "hover" effect to square
-            newDiv.addEventListener('mouseover', (e) => newDiv.style.backgroundColor = `${squareColor}`);
+            newDiv.addEventListener('mouseover', (e) => newDiv.style.backgroundColor = `${defaultSquareColor}`);
         }
     }
 }
@@ -77,6 +78,12 @@ function generateRandomColor() {
         color += hexadecimal[randomIndex];
     }
     return color;
+}
+
+function isDefaultOrBlankSquareColor(squareDiv) {
+    let currentSquareColor = squareDiv.style.backgroundColor;
+    if (currentSquareColor === defaultSquareColor || currentSquareColor === blankSquareColor) return true;
+    return false;
 }
 
 
