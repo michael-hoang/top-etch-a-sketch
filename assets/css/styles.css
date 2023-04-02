@@ -26,18 +26,24 @@ body {
     font-size: 6vw;
 }
 
-#refresh-btn {
+#btns-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 600px;
+}
+
+#btns-container button {
     background-color: rgb(225, 225, 225);
     font-family: 'Press Start 2P', cursive;
     font-size: 2vw;
     padding: 1.5vw;
 }
 
-#refresh-btn:active {
+#btns-container button:active {
     transform: scale(0.98);
 }
 
-#refresh-btn:hover {
+#btns-container button:hover {
     background-color: rgb(220, 220, 220);
 }
 
@@ -52,7 +58,7 @@ body {
         font-size: 57.6px;
     }
 
-    #refresh-btn {
+    #btns-container button {
         font-size: 19.2px;
         padding: 14.4px;
     }
