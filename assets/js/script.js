@@ -63,7 +63,9 @@ function drawGrid() {
                 } else if (isDefaultOrBlankSquareColor(newDiv)) {
                     randomColor = generateRandomColor();
                     newDiv.style.backgroundColor = randomColor;
-                    randomColorRgbValues = getRgbValues(newDiv)
+                    storeBlackLevelSteps(newDiv)
+                } else {
+                    darken(newDiv);
                 }
             });
         }
@@ -102,13 +104,38 @@ function isDefaultOrBlankSquareColor(squareDiv) {
     return false;
 }
 
-function getRgbValues(squareDiv) {
+function getRgbArray(squareDiv) {
     currentSquareColor = squareDiv.style.backgroundColor;
     let r = /\d+/.exec(currentSquareColor)[0] * 1;
     let g = /, \d+/.exec(currentSquareColor)[0].slice(2) * 1;
     let b = /\d+\)/.exec(currentSquareColor)[0].slice(0, -1) * 1;
     return [r, g, b];
-    
+}
+
+function storeBlackLevelSteps(squareDiv) {
+    rgbArray = getRgbArray(squareDiv);
+    rBl = rgbArray[0] / 10;
+    gBl = rgbArray[1] / 10;
+    bBl = rgbArray[2] / 10;
+    squareDiv.setAttribute('red', rBl);
+    squareDiv.setAttribute('green', gBl);
+    squareDiv.setAttribute('blue', bBl);
+}
+
+function getBlackLevelStepsArray(squareDiv) {
+    rBl = squareDiv.getAttribute('red') * 1;
+    gBl = squareDiv.getAttribute('green') * 1;
+    bBl = squareDiv.getAttribute('blue') * 1;
+    return [rBl, gBl, bBl];
+}
+
+function darken(squareDiv) {
+    blackLevelsArray = getBlackLevelStepsArray(squareDiv)
+    currentRgbArray = getRgbArray(squareDiv)
+    darkerRed = currentRgbArray[0] - blackLevelsArray[0];
+    darkerGreen = currentRgbArray[1] - blackLevelsArray[1];
+    darkerBlue = currentRgbArray[2] - blackLevelsArray[2];
+    squareDiv.style.backgroundColor = `rgb(${darkerRed}, ${darkerGreen}, ${darkerBlue})`;
 }
 
 // Grid size input
