@@ -32,19 +32,19 @@ body {
     width: 600px;
 }
 
-#btns-container button {
+.buttons {
     background-color: rgb(225, 225, 225);
     font-family: 'Press Start 2P', cursive;
     font-size: 2vw;
     padding: 1.5vw;
 }
 
-#btns-container button:active {
+.buttons:active {
     transform: scale(0.98);
 }
 
-#btns-container button:hover {
-    background-color: rgb(220, 220, 220);
+.buttons:hover {
+    background-color: rgb(218, 218, 218);
 }
 
 @media screen and (min-width: 960px) {
@@ -58,8 +58,59 @@ body {
         font-size: 57.6px;
     }
 
-    #btns-container button {
+    .buttons {
         font-size: 19.2px;
         padding: 14.4px;
+    }
+}
+
+.rgb-mode-on {
+    position: relative;
+}
+
+.rgb-mode-on::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #fb0094, #00f, #0f0, 
+    #ff0, #f00, #fb0094, #00f, #0f0, #ff0, #f00);
+    background-size: 400%;
+    opacity: 0;
+    filter: blur(20px);
+    transition: 0.5s;
+}
+
+.rgb-mode-on::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 0%;
+    background: linear-gradient(45deg, #fb0094, #00f, #0f0, 
+    #ff0, #f00, #fb0094, #00f, #0f0, #ff0, #f00);
+    background-size: 400%;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.rgb-mode-on::before,
+.rgb-mode-on::after {
+    opacity: 0.5;
+    animation: animate 20s linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 300% 0;
+    }
+    100%{
+        background-position: 0 0;
     }
 }

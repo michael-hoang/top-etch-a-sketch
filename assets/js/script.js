@@ -2,6 +2,11 @@ const MAX_SQUARES_PER_SIDE = 100;
 const CONTAINER_WIDTH = 600;
 const BORDER_THICKNESS = 1;
 
+//HTML Objects
+const gridSizeInput = document.querySelector('#grid-size-entry');
+const rgbBtn = document.querySelector('#rgb-btn');
+const refreshBtn = document.querySelector('#refresh-btn');
+
 // Container properties
 const squareDivsContainer = document.querySelector('#square-divs-container');
 squareDivsContainer.style.width = `${CONTAINER_WIDTH}px`;
@@ -9,9 +14,11 @@ squareDivsContainer.style.height = `${CONTAINER_WIDTH}px`;
 squareDivsContainer.style.fontSize = 0;
 
 // Grid settings
-let blankSquareColor = 'rgb(210, 210, 210)';
-let defaultSquareColor = 'rgb(60, 60, 60)';
+let borderColor = 'rgb(210, 210, 210)'; // light gray
+let blankSquareColor = 'rgb(235, 235, 235)'; // off white
+let defaultSquareColor = 'rgb(60, 60, 60)'; // off black
 let squaresPerSide = 10;
+let rgbModeOn = rgbBtn.classList.contains('rgb-mode-on')
 
 // Functions
 function calculateSquareSize() {
@@ -28,7 +35,8 @@ function drawGrid() {
         for (let j = 0; j < x; j++) {
             const newDiv = document.createElement('div');
             newDiv.style.border = `solid black`;
-            newDiv.style.borderColor = blankSquareColor;
+            newDiv.style.borderColor = borderColor;
+            newDiv.style.backgroundColor = blankSquareColor;
             newDiv.style.height = `${squareSize}px`;
             newDiv.style.width = `${squareSize}px`;
             newDiv.style.display = 'inline-block';
@@ -49,7 +57,15 @@ function drawGrid() {
             }
 
             // Add "hover" effect to square
-            newDiv.addEventListener('mouseover', (e) => newDiv.style.backgroundColor = `${defaultSquareColor}`);
+            newDiv.addEventListener('mouseover', (e) => {
+                if (!rgbModeOn) {
+                    newDiv.style.backgroundColor = `${defaultSquareColor}`;
+                } else if (isDefaultOrBlankSquareColor(newDiv)) {
+                    randomColor = generateRandomColor();
+                    newDiv.style.backgroundColor = randomColor;
+                    randomColorRgbValues = getRgbValues(newDiv)
+                }
+            });
         }
     }
 }
@@ -63,10 +79,10 @@ function eraseGrid() {
 function updateSquaresPerSide() {
     let newGridSize = gridSizeInput.value
     if (!isNaN(newGridSize) && newGridSize > 0 && newGridSize <= 100 && newGridSize % 1 === 0) {
-        newGridSize = newGridSize * 1; // * 1 converts number string to number
+        newGridSize = newGridSize * 1; // * 1 converts "number" string to number
         squaresPerSide = newGridSize;
     } else {
-        gridSizeInput.style.backgroundColor = 'rgba(255, 99, 71, 0.5)'
+        gridSizeInput.style.backgroundColor = 'rgba(255, 99, 71, 0.5)' // tomato color
     }
 }
 
@@ -86,22 +102,39 @@ function isDefaultOrBlankSquareColor(squareDiv) {
     return false;
 }
 
+function getRgbValues(squareDiv) {
+    currentSquareColor = squareDiv.style.backgroundColor;
+    let r = /\d+/.exec(currentSquareColor)[0] * 1;
+    let g = /, \d+/.exec(currentSquareColor)[0].slice(2) * 1;
+    let b = /\d+\)/.exec(currentSquareColor)[0].slice(0, -1) * 1;
+    return [r, g, b];
+    
+}
 
 // Grid size input
-const gridSizeInput = document.querySelector('#grid-size-entry');
 gridSizeInput.value = squaresPerSide;
 gridSizeInput.addEventListener('focus', (e) => {
     gridSizeInput.select()
     gridSizeInput.style.backgroundColor = 'rgb(240, 240, 240)'
-})
+});
 gridSizeInput.addEventListener('focusout', (e) => {
     if (gridSizeInput.value === '') {
         gridSizeInput.value = squaresPerSide;
     }
-})
+});
+
+// RGB Mode button
+rgbBtn.addEventListener('click', (e) => {
+    if (!rgbModeOn) {
+        rgbBtn.classList.add('rgb-mode-on');
+        rgbModeOn = true;
+    } else {
+        rgbBtn.classList.remove('rgb-mode-on');
+        rgbModeOn = false;
+    }
+});
 
 // Refresh button
-const refreshBtn = document.querySelector('#refresh-btn');
 refreshBtn.addEventListener('click', (e) => {
     updateSquaresPerSide();
     eraseGrid();
